@@ -17,22 +17,17 @@ export default function QueryProcessor(query: string): string {
     return "Yuki"
   }
 
-  if (query.toLowerCase().includes("what is 91 plus 80?")) {
-    return (
-      "171"
-    )
+  const sumMatch = query.match(/what is (\d+) plus (\d+)/i);
+  if (sumMatch) {
+    const num1 = parseInt(sumMatch[1], 10);
+    const num2 = parseInt(sumMatch[2], 10);
+    return (num1 + num2).toString();
   }
 
-  if (query.toLowerCase().includes("what is 85 plus 39?")) {
-    return (
-      "124"
-    )
-  }
-
-  if (query.toLowerCase().includes("what is 26 plus 60?")) {
-    return (
-      "86"
-    )
+  const largestMatch = query.match(/which of the following numbers is the largest: ([\d,\s]+)/i);
+  if (largestMatch) {
+    const numbers = largestMatch[1].split(",").map(num => parseInt(num.trim(), 10));
+    return Math.max(...numbers).toString();
   }
 
   return "";
