@@ -17,19 +17,19 @@ export default function QueryProcessor(query: string): string {
     return "Yuki"
   }
 
-  const sumMatch = query.match(/what is (\d+) plus (\d+)/i);
-  if (sumMatch) {
-    const num1 = parseInt(sumMatch[1], 10);
-    const num2 = parseInt(sumMatch[2], 10);
-    return (num1 + num2).toString();
-  }
-
   const threeSumMatch = query.match(/what is (\d+) plus (\d+) plus (\d+)/i);
   if (threeSumMatch) {
     const num1 = parseInt(threeSumMatch[1], 10);
     const num2 = parseInt(threeSumMatch[2], 10);
     const num3 = parseInt(threeSumMatch[3], 10);
     return (num1 + num2 + num3).toString();
+  }
+
+  const sumMatch = query.match(/what is (\d+) plus (\d+)/i);
+  if (sumMatch) {
+    const num1 = parseInt(sumMatch[1], 10);
+    const num2 = parseInt(sumMatch[2], 10);
+    return (num1 + num2).toString();
   }
 
   const diffMatch = query.match(/what is (\d+) minus (\d+)/i);
