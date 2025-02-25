@@ -24,23 +24,25 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
-  // Which of the following numbers is the largest
+  // Which of the following numbers is the largest: X1, X2, ...
   const largestMatch = query.match(/which of the following numbers is the largest: ([\d,\s]+)/i);
   if (largestMatch) {
     const numbers = largestMatch[1].split(",").map(num => parseInt(num.trim(), 10));
     return Math.max(...numbers).toString();
   }
 
+  // Which of the following numbers is both a square and a cube: X1, X2, X3...
   const squareCubeMatch = query.match(/which of the following numbers is both a square and a cube: ([\d,\s]+)/i);
   if (squareCubeMatch) {
     const numbers = squareCubeMatch[1].split(",").map(num => parseInt(num.trim(), 10));
     const sixthPowers = numbers.filter(num => {
-      const root = Math.round(num ** (1 / 6));
-      return root ** 6 === num; 
+      const sixthRoot = Math.pow(num, 1 / 6);
+      return Number.isInteger(sixthRoot); // Check if it's a whole number
     });
     return sixthPowers.length > 0 ? sixthPowers.join(", ") : "None";
   }
 
+  // What is X multiplied by Y?
   const multiplyMatch = query.match(/what is (\d+) multiplied by (\d+)/i);
   if (multiplyMatch) {
     const num1 = parseInt(multiplyMatch[1], 10);
