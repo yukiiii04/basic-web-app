@@ -45,7 +45,7 @@ describe("QueryProcessor", () => {
     })
 
     test('should return 171'), () => {
-        const query = "what is 81 + 90?";
+        const query = "what is 80 + 91?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
             "171"

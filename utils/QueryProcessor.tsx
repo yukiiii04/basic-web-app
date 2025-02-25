@@ -17,12 +17,11 @@ export default function QueryProcessor(query: string): string {
     return "Yuki";
   }
 
-  return "";
-
-
   if (query.toLowerCase().includes("91 plus 80")) {
     return (
       "171"
     )
   }
+
+  return "";
 }
