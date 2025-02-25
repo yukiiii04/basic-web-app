@@ -39,6 +39,14 @@ export default function QueryProcessor(query: string): string {
     return (num1 - num2).toString();
   }
 
+    // Handling exponentiation queries
+  const powerMatch = query.match(/what is (\d+) to the power of (\d+)/i);
+  if (powerMatch) {
+    const base = parseInt(powerMatch[1], 10);
+    const exponent = parseInt(powerMatch[2], 10);
+    return Math.pow(base, exponent).toString();
+  }
+
   // Which of the following numbers is the largest: X1, X2, ...
   const largestMatch = query.match(/which of the following numbers is the largest: ([\d,\s]+)/i);
   if (largestMatch) {
