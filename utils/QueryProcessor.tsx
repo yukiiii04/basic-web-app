@@ -24,6 +24,7 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
+  // Which of the following numbers is the largest
   const largestMatch = query.match(/which of the following numbers is the largest: ([\d,\s]+)/i);
   if (largestMatch) {
     const numbers = largestMatch[1].split(",").map(num => parseInt(num.trim(), 10));
@@ -34,10 +35,17 @@ export default function QueryProcessor(query: string): string {
   if (squareCubeMatch) {
     const numbers = squareCubeMatch[1].split(",").map(num => parseInt(num.trim(), 10));
     const sixthPowers = numbers.filter(num => {
-      const root = Math.round(num ** (1 / 6)); // Find the 6th root
-      return root ** 6 === num; // Check if raising it back results in the original number
+      const root = Math.round(num ** (1 / 6));
+      return root ** 6 === num; 
     });
     return sixthPowers.length > 0 ? sixthPowers.join(", ") : "None";
+  }
+
+  const multiplyMatch = query.match(/what is (\d+) multiplied by (\d+)/i);
+  if (multiplyMatch) {
+    const num1 = parseInt(multiplyMatch[1], 10);
+    const num2 = parseInt(multiplyMatch[2], 10);
+    return (num1 * num2).toString();
   }
 
   return "";
