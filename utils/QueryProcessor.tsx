@@ -39,13 +39,17 @@ export default function QueryProcessor(query: string): string {
   }
 
   // Which of the following numbers is both a square and a cube: X1, X2, X3...
-  const squareCubeMatch = query.match(/which of the following numbers is both a square and a cube: ([\d,\s]+)/i);
+  const squareCubeMatch = query.match(/which of the following numbers is both a square and a cube: ([\d,\s,]+)/i);
   if (squareCubeMatch) {
     const numbers = squareCubeMatch[1].split(",").map(num => parseInt(num.trim(), 10));
-    const sixthPowers = numbers.filter(num => {
-      const sixthRoot = Math.pow(num, 1 / 6);
-      return Number.isInteger(sixthRoot); // Check if it's a whole number
-    });
+
+    const isSixthPower = (num: number): boolean => {
+      if (num <= 0) return false; // Only positive numbers can be perfect sixth powers
+      const root = Math.round(Math.pow(num, 1 / 6)); // Round to nearest integer
+      return Math.pow(root, 6) === num; // Check if it's a true sixth power
+    };
+
+    const sixthPowers = numbers.filter(isSixthPower);
     return sixthPowers.length > 0 ? sixthPowers.join(", ") : "None";
   }
 
