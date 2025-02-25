@@ -24,6 +24,14 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
+  const threeSumMatch = query.match(/what is (\d+) plus (\d+) plus (\d+)/i);
+  if (threeSumMatch) {
+    const num1 = parseInt(threeSumMatch[1], 10);
+    const num2 = parseInt(threeSumMatch[2], 10);
+    const num3 = parseInt(threeSumMatch[3], 10);
+    return (num1 + num2 + num3).toString();
+  }
+
   const diffMatch = query.match(/what is (\d+) minus (\d+)/i);
   if (diffMatch) {
     const num1 = parseInt(diffMatch[1], 10);
