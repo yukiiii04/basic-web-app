@@ -24,6 +24,13 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
+  const diffMatch = query.match(/what is (\d+) minus (\d+)/i);
+  if (diffMatch) {
+    const num1 = parseInt(diffMatch[1], 10);
+    const num2 = parseInt(diffMatch[2], 10);
+    return (num1 - num2).toString();
+  }
+
   // Which of the following numbers is the largest: X1, X2, ...
   const largestMatch = query.match(/which of the following numbers is the largest: ([\d,\s]+)/i);
   if (largestMatch) {
@@ -51,7 +58,6 @@ export default function QueryProcessor(query: string): string {
   }
 
   //primes
-  // Handling prime number queries
   const primeMatch = query.match(/which of the following numbers are primes: ([\d,\s]+)/i);
   if (primeMatch) {
     const numbers = primeMatch[1].split(",").map(num => parseInt(num.trim(), 10));
@@ -63,7 +69,6 @@ export default function QueryProcessor(query: string): string {
       }
       return true;
     };
-
     const primeNumbers = numbers.filter(isPrime);
     return primeNumbers.length > 0 ? primeNumbers.join(", ") : "None";
   }
