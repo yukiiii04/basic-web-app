@@ -43,4 +43,12 @@ describe("QueryProcessor", () => {
             "Yuki"
           ));
     })
+
+    test('should return 171'), () => {
+        const query = "what is 81 + 90?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "171"
+        ))
+    }
 });
