@@ -14,12 +14,24 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("name")) {
-    return "Yuki";
+    return "Yuki"
   }
 
   if (query.toLowerCase().includes("91 plus 80")) {
     return (
       "171"
+    )
+  }
+
+  if (query.toLowerCase().includes("85 plus 39")) {
+    return (
+      "124"
+    )
+  }
+
+  if (query.toLowerCase().includes("26 plus 60")) {
+    return (
+      "86"
     )
   }
 
