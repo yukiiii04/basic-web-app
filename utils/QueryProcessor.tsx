@@ -50,5 +50,23 @@ export default function QueryProcessor(query: string): string {
     return (num1 * num2).toString();
   }
 
+  //primes
+  // Handling prime number queries
+  const primeMatch = query.match(/which of the following numbers are primes: ([\d,\s]+)/i);
+  if (primeMatch) {
+    const numbers = primeMatch[1].split(",").map(num => parseInt(num.trim(), 10));
+
+    const isPrime = (num: number): boolean => {
+      if (num < 2) return false;
+      for (let i = 2; i * i <= num; i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    };
+
+    const primeNumbers = numbers.filter(isPrime);
+    return primeNumbers.length > 0 ? primeNumbers.join(", ") : "None";
+  }
+
   return "";
 }
