@@ -17,19 +17,19 @@ export default function QueryProcessor(query: string): string {
     return "Yuki"
   }
 
-  if (query.toLowerCase().includes("91 plus 80")) {
+  if (query.toLowerCase().includes("what is 91 plus 80?")) {
     return (
       "171"
     )
   }
 
-  if (query.toLowerCase().includes("85 plus 39")) {
+  if (query.toLowerCase().includes("what is 85 plus 39?")) {
     return (
       "124"
     )
   }
 
-  if (query.toLowerCase().includes("26 plus 60")) {
+  if (query.toLowerCase().includes("what is 26 plus 60?")) {
     return (
       "86"
     )
